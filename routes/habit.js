@@ -36,7 +36,7 @@ router.get("/:habitId", function (req, res, next) {
       details = detailList[0];
       db.query(
         `
-        SELECT date, done_flag
+        SELECT hh.id AS id, date, done_flag AS doneFlag
         FROM habit_history AS hh
         JOIN user_has_habit      AS uhh ON uhh.id = hh.user_habit_id
         JOIN challenge_has_habit AS chh ON chh.id = uhh.challenge_habit_id
