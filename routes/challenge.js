@@ -12,7 +12,8 @@ router.get("/", function (req, res, next) {
     [req.query.user_id],
     (err, result) => {
       if (err) next(err);
-      if (!result[0].isExist) res.status(200).json({ result: false });
+      let response = { result: result[0].isExist };
+      if (!result[0].isExist) res.status(200).json(response);
       else {
         db.query(
           `SELECT c.challenge_name AS challengeName, c.d_day AS challengeDDay, c.image AS challengeImage, c.id AS challengeId
@@ -22,7 +23,7 @@ router.get("/", function (req, res, next) {
           [req.query.user_id],
           (err, challengeList) => {
             if (err) next(err);
-            challenge = challengeList[0];
+            response.challenge = challengeList[0];
             db.query(
               `
               SELECT 
@@ -40,8 +41,8 @@ router.get("/", function (req, res, next) {
               [req.query.user_id, req.query.user_id],
               (err, habits) => {
                 if (err) next(err);
-                challenge.habits = habits;
-                res.status(200).json(challenge);
+                response.habits = habits;
+                res.status(200).json(response);
               }
             );
           }
