@@ -15,7 +15,7 @@ router.get("/", function (req, res, next) {
       if (!result[0].isExist) res.status(200).json({ result: false });
       else {
         db.query(
-          `SELECT c.challenge_name AS challengeName, c.d_day AS challengeDDay
+          `SELECT c.challenge_name AS challengeName, c.d_day AS challengeDDay, c.image AS challengeImage, c.id AS challengeId
            FROM challenge_has_user AS chu
            JOIN challenge      AS c ON c.id = chu.challenge_id
            WHERE user_id = ? AND end_flag = 0;`,
