@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pull": "git pull && pm2 restart winners",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
