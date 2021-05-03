@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const challengeRouter = require("./routes/challenge");
 const habitRouter = require("./routes/habit");
+const allChallengesRouter = require("./routes/allChallenges");
 
 const port = 4240;
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/challenge", challengeRouter);
 app.use("/habit", habitRouter);
+app.use("/allChallenges", allChallengesRouter);
 
 app.use(function (req, res, next) {
   res.status(404).send("Not Found");
